@@ -54,6 +54,10 @@ h1 {
   font-weight: 600;
 }
 
+.form-group{
+  margin:1rem;
+}
+
 /* Tables */
 
 .styled-table {
