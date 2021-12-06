@@ -8,7 +8,6 @@ export interface IUser {
   gender: string;
   email: string;
   phoneNumber: string;
-  address: string;
   city: string;
   country: string;
 }
@@ -31,7 +30,6 @@ export class UserService {
       gender: '',
       email: '',
       phoneNumber: '',
-      address: '',
       city: '',
       country: '',
     };
@@ -49,7 +47,6 @@ export class UserService {
           gender: user.gender,
           email: user.email,
           phoneNumber: user.phoneNumber,
-          address: user.address,
           city: user.city,
           country: user.country,
         };
