@@ -1,0 +1,43 @@
+<div class="containerPaper">
+  <div class="cardsHeader">
+    <fa-icon class="icon" [icon]="filesIcon" style="color: #c947f5"></fa-icon>
+    <h1>Files</h1>
+  </div>
+
+  <div class="fileUploadContainer">
+    <label>
+      <input type="file" (change)="selectFile($event)" />
+    </label>
+
+    <button [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+    <div *ngIf="currentFile" class="progress my-3">
+      <div
+        class="progress-bar"
+        role="progressbar"
+        attr.aria-valuenow="{{ progress }}"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [ngStyle]="{ width: progress + '%' }"
+      >
+        {{ progress }}%
+      </div>
+    </div>
+
+    <div *ngIf="message" class="alert" role="alert">
+      {{ message }}
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <div class="card-header">Files:</div>
+    <ul
+      class="list-group list-group-flush"
+      *ngFor="let file of fileInfos | async"
+    >
+      <li class="list-group-item">
+        <a href="{{ file.url }}">{{ file.name }}</a>
+      </li>
+    </ul>
+  </div>
+</div>

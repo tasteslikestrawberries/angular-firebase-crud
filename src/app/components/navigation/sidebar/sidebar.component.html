@@ -1,0 +1,53 @@
+<div class="sidebarContainer">
+  <div class="sidebar">
+    <img src="assets/eve.png" alt="profilepic" />
+
+    <hr
+      style="width: 100%; height: 1px; border: none; background-color: #d8d8d8"
+    />
+
+    <div class="sidebarItem">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidebarIcon" [icon]="timesheetIcon"></fa-icon>
+        Tasks
+      </a>
+    </div>
+
+    <div class="sidebarItem">
+      <a
+        routerLink="/user-profile"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidebarIcon" [icon]="myprofileIcon"></fa-icon>
+        My Profile
+      </a>
+    </div>
+
+    <div class="sidebarItem">
+      <a
+        routerLink="/performance"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidebarIcon" [icon]="performanceIcon"></fa-icon>
+        Performance
+      </a>
+    </div>
+
+    <div class="sidebarItem">
+      <a
+        routerLink="/files"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <fa-icon class="sidebarIcon" [icon]="filesIcon"></fa-icon>
+        Files
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<nav class="topNav">
+  <a routerLink="/"><h3 class="title">Angular CRUD App</h3></a>
+
+  <div class="row">
+    <div class="col">
+      <div ngbDropdown class="d-inline-block">
+        <button
+          class="btn btn-outline-primary"
+          id="dropdownBasic1"
+          ngbDropdownToggle
+        >
+          <b>test@test.com</b>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <a
+            class="mobileMenu"
+            ngbDropdownItem
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Tasks</a
+          >
+
+          <a
+            class="mobileMenu"
+            ngbDropdownItem
+            routerLink="/user-profile"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Users</a
+          >
+
+          <a
+            class="mobileMenu"
+            ngbDropdownItem
+            routerLink="/performance"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Performance</a
+          >
+
+          <a
+            class="mobileMenu"
+            ngbDropdownItem
+            routerLink="/files"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Files</a
+          >
+
+          <a
+            ngbDropdownItem
+            routerLink="/add-user"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Add User</a
+          >
+
+          <button ngbDropdownItem>Log Out</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

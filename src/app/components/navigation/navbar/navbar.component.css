@@ -1,0 +1,81 @@
+.topNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(250, 251, 252);
+  height: 4rem;
+  width: 100vw;
+  padding: 1rem;
+}
+
+.topNav > a h3 img {
+  width: 100px;
+}
+
+.title {
+  color: #c947f5;
+  font-size: large;
+  margin-bottom: 0;
+}
+
+.topNav ul {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.topNav li {
+  list-style-type: none;
+}
+
+.dropdownArrow {
+  display: none;
+}
+
+.navDrop {
+  display: none;
+}
+
+.logout {
+  display: none;
+}
+
+.hamburger {
+  display: block;
+  margin-right: 1rem;
+}
+
+/*DESKTOP SCREENS*/
+@media (min-width: 70rem) {
+  .title {
+    font-size: larger;
+    margin-left: 2rem;
+  }
+
+  .topNav ul {
+    margin-right: 2rem;
+    gap: 3rem;
+  }
+
+  .navDrop {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  .logout {
+    display: block;
+  }
+
+  .dropdownArrow {
+    display: block;
+  }
+
+  .dropdownArrow:hover {
+    cursor: pointer;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}

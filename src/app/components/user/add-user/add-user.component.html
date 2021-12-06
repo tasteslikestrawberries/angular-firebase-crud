@@ -1,0 +1,91 @@
+<div class="containerPaper">
+  <div class="cardsHeader">
+    <fa-icon class="icon" [icon]="faUserPlus" style="color: #c947f5"></fa-icon>
+    <h1>Add User</h1>
+  </div>
+  <div class="spinnerWrapper" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <form (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="!isLoading">
+          <div class="form-group">
+            <span style="color: #c947f5">*{{ " " }}</span
+            ><label>First Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              ngModel
+              name="firstName"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <span style="color: #1eb7e6">*{{ " " }}</span
+            ><label>Last Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              ngModel
+              name="lastName"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <div class="radio" *ngFor="let gender of genders">
+              <label>
+                <input type="radio" name="gender" ngModel [value]="gender" />
+                {{ gender }}
+              </label>
+            </div>
+          </div>
+
+          <!--here we use ngModel with property binding/ as ngModel, no parentheses-->
+          <div class="form-group">
+            <span style="color: #c947f5">*{{ " " }}</span
+            ><label>Email:</label>
+            <!--required and email are angular directives here that make this field obligatory / check if the email is valid-->
+            <input
+              type="email"
+              class="form-control"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel"
+            />
+            <span *ngIf="!email.valid && email.touched" class="help-block"
+              >Please enter a valid email</span
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Phone Number:</label>
+            <input type="tel" class="form-control" ngModel name="phoneNumber" />
+          </div>
+
+          <div class="form-group">
+            <label>City:</label>
+            <input type="text" class="form-control" ngModel name="city" />
+          </div>
+
+          <div class="form-group">
+            <label>Country:</label>
+            <input type="text" class="form-control" ngModel name="country" />
+          </div>
+
+          <p style="font-size: small; color: #c947f5">* required fields</p>
+
+          <div class="form-group">
+            <button [disabled]="!f.valid" type="submit">Submit</button>
+          </div>
+        </form>
+
+        <p class="formStatus" *ngIf="submitted">{{ formStatus }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,152 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto:wght@300&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none !important; /* overriding bootstrap */
+}
+
+body {
+  font-family: "Montserrat";
+  color: #222222;
+}
+
+/* This is flex wrapper in app-component for sidebar/content */
+.contentWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.containerPaper {
+  width: 100vw;
+  height: fit-content;
+  min-height: 80vh;
+  margin-top: 1rem;
+}
+
+.cardsHeader {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.cardsHeader:nth-child(1) {
+  margin-left: 1rem;
+}
+
+.icon,
+.hamburger {
+  font-size: 24px;
+}
+
+button {
+  cursor: pointer;
+}
+
+h1 {
+  font-size: medium;
+  color: #c947f5;
+  font-weight: 600;
+}
+
+/* Tables */
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  min-width: 100vw;
+  font-size: small;
+}
+
+.styled-table thead tr {
+  background-color: #c947f5;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: thin solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+/*.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #C947F5;
+}*/
+
+/* TABS */
+
+.nav-link a.active {
+  color: #c947f5;
+}
+
+/*DESKTOP SCREENS*/
+@media (min-width: 70rem) {
+  .mobileMenu {
+    display: none;
+  }
+
+  .dropdown-divider {
+    display: none;
+  }
+
+  .containerPaper {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 2rem;
+    margin: 2rem 2rem;
+    width: 77vw;
+  }
+
+  .icon {
+    font-size: 30px;
+  }
+
+  h1 {
+    font-size: xx-large;
+  }
+
+  .styled-table {
+    min-width: 70vw;
+    margin: 2rem auto;
+    font-size: unset;
+  }
+}
+
+/* overriding bootstrap */
+
+ul {
+  margin-bottom: 0 !important;
+}
+.nav-tabs .nav-link {
+  color: #222222;
+}
+
+.nav-tabs .nav-link.active {
+  color: #c947f5;
+}
+
+#dropdownBasic1 {
+  color: #c947f5;
+  border: none;
+  background-color: unset;
+  outline: none;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: #c947f5;
+}

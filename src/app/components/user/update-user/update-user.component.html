@@ -1,0 +1,112 @@
+<div class="containerPaper">
+  <div class="cardsHeader">
+    <fa-icon class="icon" [icon]="faUserEdit" style="color: #c947f5"></fa-icon>
+    <h1>Edit Profile</h1>
+  </div>
+
+  <div class="spinnerWrapper" *ngIf="isLoading">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="!isLoading">
+    <div class="form-group">
+      <label>First Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.firstName"
+        name="firstName"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Last Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.lastName"
+        name="lastName"
+      />
+    </div>
+
+    <div class="form-group">
+      <div class="radio" *ngFor="let gender of genders">
+        <label>
+          <input
+            type="radio"
+            name="gender"
+            [(ngModel)]="user.gender"
+            [value]="gender"
+          />
+          {{ gender }}
+        </label>
+      </div>
+    </div>
+
+    <!--here we use ngModel with property binding/ as ngModel, no parentheses-->
+    <div class="form-group">
+      <label>Email:</label>
+
+      <input
+        type="email"
+        class="form-control"
+        [(ngModel)]="user.email"
+        name="email"
+        email
+        #email="ngModel"
+      />
+      <span *ngIf="!email.valid && email.touched" class="help-block"
+        >Please enter a valid email</span
+      >
+    </div>
+
+    <div class="form-group">
+      <label>Phone Number:</label>
+      <input
+        type="tel"
+        class="form-control"
+        [(ngModel)]="user.phoneNumber"
+        name="phoneNumber"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>City:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.city"
+        name="city"
+      />
+    </div>
+
+    <div class="form-group">
+      <label>Country:</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.country"
+        name="country"
+      />
+    </div>
+
+    <div class="form-group buttons">
+      <button [disabled]="!f.valid" type="submit">Update Profile</button>
+      <hr
+        style="
+          width: 100%;
+          height: 1px;
+          border: none;
+          background-color: #d8d8d8;
+        "
+      />
+      <button class="btn btn-danger" type="button" (click)="deleteuser()">
+        Delete Profile
+      </button>
+    </div>
+  </form>
+
+  <p class="formStatus" *ngIf="deleted">{{ deleteMessage }}</p>
+
+  <p class="formStatus" *ngIf="submitted">{{ formStatus }}</p>
+</div>

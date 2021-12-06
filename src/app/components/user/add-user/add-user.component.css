@@ -1,0 +1,41 @@
+button {
+  border: none;
+  border-radius: 5px;
+  background-color: #c947f5;
+  padding: 0.3rem;
+  color: white;
+  font-weight: bold;
+}
+
+button:disabled {
+  background-color: #de8ef8;
+}
+
+form {
+  margin-top: 2rem;
+}
+
+.help-block {
+  color: #dc3545;
+}
+
+.groupContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+select {
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.formStatus {
+  color: #28a745;
+}
+
+.spinnerWrapper {
+  display: flex;
+  justify-content: center;
+}
