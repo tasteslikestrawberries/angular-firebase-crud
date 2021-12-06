@@ -16,6 +16,8 @@ import { PerformanceComponent } from './components/performance/performance.compo
 import { FilesComponent } from './components/files/files.component';
 import { TimerComponent } from './components/tasks/timer/timer.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { ChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -30,14 +32,16 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
     PerformanceComponent,
     FilesComponent,
     TimerComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    BarChartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

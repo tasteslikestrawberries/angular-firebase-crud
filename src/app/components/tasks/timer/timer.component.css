@@ -10,7 +10,7 @@ button {
 }
 
 .btn-success:hover{
-  background-color: rgb(245, 108, 58);
+  background-color: #c221f8;
 }
 
 .startBtn:disabled {
