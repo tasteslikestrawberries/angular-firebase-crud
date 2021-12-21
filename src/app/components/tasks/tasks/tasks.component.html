@@ -12,6 +12,8 @@
       name="name"
       placeholder="What are you working on?"
     />
+
+    <input type="hidden" name="date" ngModel="{{ task?.date }}" />
     <input type="hidden" name="time_start" ngModel="{{ task?.time_start }}" />
     <input type="hidden" name="time_end" ngModel="{{ task?.time_end }}" />
     <input type="hidden" name="time_count" ngModel="{{ task?.time_count }}" />
@@ -43,15 +45,21 @@
   <table class="styled-table">
     <thead>
       <tr>
-        <th>{{ myDate | customDate }}</th>
-        <th>Total:</th>
+        <span></span>
+        <th> Total: {{ time_total }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let task of tasks">
         <td>
           <img src="assets/eve.png" />
-          <span>{{ task?.name }}</span>
+          <span> <input
+            type="text"
+            (keyup.enter)="onUpdateTask(task)"
+            [(ngModel)]="task.name"
+            placeholder="Task Name"
+            style='border:none; background-color: transparent; caret-color: #c947f5;'
+          /></span>
           <span
             ><button class="expandButton" (click)="toggleExpandTask(task)">
               <fa-icon
@@ -61,10 +69,10 @@
               ></fa-icon></button
           ></span>
         </td>
-
+        <td>{{ task?.date | customDate }}</td>
         <td>{{ task?.time_start }} - {{ task?.time_end }}</td>
         <td>{{ task?.time_count }}</td>
-        <td>
+        <!--<td>
           <input
             class="editInput"
             *ngIf="task.isEditMode"
@@ -75,7 +83,7 @@
           />
         </td>
 
-        <!--<button
+        <button
             *ngIf="task.isEditMode"
             (click)="onUpdateTask(task)"
             type="button"
@@ -83,8 +91,8 @@
             Update
           </button>-->
 
-        <td>
-          <button
+         <!--<td>
+         <button
             type="button"
             (click)="toggleEditMode(task)"
             style="background-color: unset"
@@ -95,7 +103,7 @@
               style="color: #c947f5"
             ></fa-icon>
           </button>
-        </td>
+        </td> -->
         <td>
           <button
             type="button"

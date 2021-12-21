@@ -1,3 +1,20 @@
+.dateForm{
+  margin:0;
+  padding:0;
+}
+
+input[type="date"]{
+  outline:none;
+  background-color: transparent;
+  border:none; 
+  color:#fff; 
+  font-weight:bold;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
 tr {
   display: flex;
   justify-content: space-between;

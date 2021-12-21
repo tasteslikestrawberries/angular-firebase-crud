@@ -7,6 +7,7 @@ export interface ITask {
   id: string;
   name: string;
   description: string;
+  date: any;
   time_start: any;
   time_end: any;
   time_count: any;
