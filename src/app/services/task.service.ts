@@ -23,7 +23,7 @@ export class TaskService {
   private url =
     'https://angular-crud-d10d8-default-rtdb.europe-west1.firebasedatabase.app/tasks.json';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private getUrlTaskId(id: string) {
     return `https://angular-crud-d10d8-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`;

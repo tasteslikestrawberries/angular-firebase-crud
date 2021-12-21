@@ -15,10 +15,11 @@ const routes: Routes = [
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'files', component: FilesComponent },
   { path: 'performance', component: PerformanceComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

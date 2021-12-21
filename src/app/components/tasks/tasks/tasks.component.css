@@ -24,18 +24,18 @@ td img {
   margin: 0 1rem;
   width: 50vw;
   border: none;
-  border: 5px solid #C947F5;
+  border: 5px solid #c947f5;
   border-radius: 15px;
 }
 
 .editInput {
   border: none;
-  border-bottom: 2px solid #C947F5;
+  border-bottom: 2px solid #c947f5;
   background-color: transparent;
 }
 
-ul{
-  display:flex;
+ul {
+  display: flex;
   align-items: center;
   margin: 0 1rem;
 }
@@ -45,7 +45,7 @@ button {
   border: none;
   border-radius: 5px;
   margin: 1rem;
-  background-color: #C947F5;
+  background-color: #c947f5;
   padding: 0.5rem;
   color: white;
   font-weight: bold;
@@ -61,7 +61,7 @@ button {
 .taskExpandedDetails {
   background-color: white !important; /*overriding bootstrap*/
   height: fit-content;
-  display:block;
+  display: block;
 }
 
 .taskExpandedDetails li {
@@ -85,7 +85,7 @@ form {
 }
 
 .addButton {
-  color: #C947F5;
+  color: #c947f5;
   background-color: unset;
   font-weight: bold;
 }
@@ -99,7 +99,7 @@ form {
   margin-left: 1rem;
 }
 
-.timerButton:hover{
+.timerButton:hover {
   background-color: #d45cfc;
 }
 
@@ -138,10 +138,10 @@ form {
 @media (min-width: 80rem) {
   form {
     margin: 0 7vw;
-    margin-top:2rem;
+    margin-top: 2rem;
   }
 
   .styled-table {
-    min-width:60vw;
+    min-width: 60vw;
   }
 }
