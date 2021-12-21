@@ -24,7 +24,8 @@ td img {
   margin: 0 1rem;
   width: 50vw;
   border: none;
-  border-bottom: 2px solid #C947F5;
+  border: 5px solid #C947F5;
+  border-radius: 15px;
 }
 
 .editInput {
@@ -69,7 +70,7 @@ button {
   font-size: small;
 }
 
-.addBarContainer {
+form {
   display: flex;
   margin: 1rem;
   align-items: center;
@@ -98,6 +99,10 @@ button {
   margin-left: 1rem;
 }
 
+.timerButton:hover{
+  background-color: #d45cfc;
+}
+
 /*DESKTOP SCREENS*/
 @media (min-width: 70rem) {
   td {
@@ -108,19 +113,15 @@ button {
     width: 10rem;
   }
 
-  .addBarContainer {
+  form {
     margin: 0 0vw;
     margin-top: 2rem;
     flex-wrap: nowrap;
   }
 
   .taskInput {
-    width: 20vw;
+    width: 30vw;
     margin: 0.5rem;
-  }
-
-  .addButton {
-    gap: 0.5rem;
   }
 
   .timer {
@@ -135,7 +136,7 @@ button {
 
 /*VERY BIG SCREENS*/
 @media (min-width: 80rem) {
-  .addBarContainer {
+  form {
     margin: 0 7vw;
     margin-top:2rem;
   }

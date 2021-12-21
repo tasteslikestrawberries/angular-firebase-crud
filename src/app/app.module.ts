@@ -14,7 +14,6 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { PerformanceComponent } from './components/performance/performance.component';
 import { FilesComponent } from './components/files/files.component';
-import { TimerComponent } from './components/tasks/timer/timer.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
@@ -31,7 +30,6 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     UserProfileComponent,
     PerformanceComponent,
     FilesComponent,
-    TimerComponent,
     CustomDatePipe,
     BarChartComponent
   ],

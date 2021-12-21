@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { TaskService, ITask } from 'src/app/services/task.service';
+import { TimerService } from 'src/app/services/timer.service';
 import { Subscription } from 'rxjs';
 
 import {
   faTable,
-  faPlusCircle,
   faCaretDown,
   faTrashAlt,
   faPen
@@ -19,8 +19,7 @@ import {
 export class TasksComponent implements OnInit, OnDestroy {
 
   myDate = new Date();
-  timesheetIcon = faTable;
-  faPlusCircle = faPlusCircle;
+  taskIcon = faTable;
   faCaretDown = faCaretDown;
   faTrashAlt = faTrashAlt;
   faPen = faPen;
@@ -32,13 +31,39 @@ export class TasksComponent implements OnInit, OnDestroy {
   @ViewChild('taskForm') taskForm?: NgForm;
   tasks: ITask[] = [];
   task!: ITask;
-  totalTime: any;
 
-  constructor(private taskService: TaskService) {}
+  /**TIMER**/
+  stop = false;
+  clicked = false;
+  time_start: any;
+  time_end: any;
+  time_count: any;
 
+  toggle() {
+    this.stop = !this.stop;
+  }
+
+  onStartClick() {
+    this.time_start = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    //console.log(this.time_start)
+    this.timerService.startTimer();
+  }
+
+  onStopClick() {
+    this.time_end = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    //console.log(this.time_end)
+    this.time_count = this.timerService.counter?.toLocaleTimeString('it-IT');
+    this.timerService.stopTimer();
+  }
+
+  onResetClick() {
+    this.timerService.resetTimer();
+  }
+
+  constructor(private taskService: TaskService, public timerService: TimerService) { }
 
   toggleExpandTask(task: ITask) {
-    task.isExpandable=!task.isExpandable;
+    task.isExpandable = !task.isExpandable;
   }
 
   //get
@@ -60,6 +85,9 @@ export class TasksComponent implements OnInit, OnDestroy {
   onSubmit() {
     //console.log(this.taskForm);
     this.task = this.taskForm?.value; //shortcut for this.task.name = this.taskForm?.value.name etc. for all properties
+    this.task.time_start = this.time_start;
+    this.task.time_end = this.time_end;
+    this.task.time_count = this.time_count;
     this.taskService.createTask(this.task).subscribe({
       next: (data) => {
         console.log('Task successfully added.');
@@ -68,7 +96,6 @@ export class TasksComponent implements OnInit, OnDestroy {
         console.warn(error);
       },
     });
-
     this.taskForm?.reset(); //resets the form and its properties and state (like touched,dirty etc.)
   }
 
