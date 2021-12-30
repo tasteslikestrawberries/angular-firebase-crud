@@ -51,13 +51,12 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   onStartClick() {
-    this.time_start = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    //console.log(this.time_start)
     this.timerService.startTimer();
   }
 
   onStopClick() {
     this.date = new Date();
+    this.time_start = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     this.time_end = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     //console.log(this.time_end)
     this.time_count = this.timerService.counter?.toLocaleTimeString('it-IT');
@@ -118,13 +117,13 @@ export class TasksComponent implements OnInit, OnDestroy {
         console.warn(error);
       },
     });
-    task.isEditMode = false;
+    //task.isEditMode = false;
     task.isExpandable = false;
   }
 
-  toggleEditMode(task: ITask) {
+  /*toggleEditMode(task: ITask) {
     task.isEditMode = !task.isEditMode;
-  }
+  }*/
 
   //onDelete
   onDeleteTask(id: string) {

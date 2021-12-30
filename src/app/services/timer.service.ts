@@ -5,21 +5,21 @@ import { timer } from 'rxjs';
   providedIn: 'root',
 })
 export class TimerService {
-  timer?: any;
+  timer$?: any;
   counter?: Date;
 
   constructor() {}
 
   startTimer() {
-    this.timer = timer(0, 1000).subscribe((t) => {
+    this.timer$ = timer(0, 1000).subscribe({ 
+      next: (timer: any) => {
       this.counter = new Date(0, 0, 0, 0, 0, 0);
-      this.counter.setSeconds(t);
-    });
+      this.counter.setSeconds(timer);
+    }});
   }
 
   stopTimer() {
-    //TODO: call function with post request here
-    this.timer.unsubscribe();
+    this.timer$.unsubscribe();
   }
 
   resetTimer() {

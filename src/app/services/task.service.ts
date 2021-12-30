@@ -7,9 +7,9 @@ export interface ITask {
   id: string;
   name: string;
   description: string;
-  date: any;
-  time_start: any;
-  time_end: any;
+  date: Date;
+  time_start: Date;
+  time_end: Date;
   time_count: any;
   isEditMode: boolean;
   isExpandable: boolean;
