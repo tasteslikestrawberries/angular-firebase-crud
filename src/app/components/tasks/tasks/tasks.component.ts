@@ -112,7 +112,7 @@ export class TasksComponent implements OnInit, OnDestroy {
       },
     });
     this.taskForm?.reset(); //resets the form and its properties and state (like touched,dirty etc.)
-    this.timerService.resetTimer()
+    this.timerService.resetTimer();
   }
 
   //onUpdate

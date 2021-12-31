@@ -31,6 +31,6 @@ export class TimerService {
   resetTimer() {
     this.counter = new Date(0, 0, 0, 0, 0, 0);
     this.startTime = null;
-    this.timer$ = undefined
+    this.timer$ = undefined;
   }
 }
