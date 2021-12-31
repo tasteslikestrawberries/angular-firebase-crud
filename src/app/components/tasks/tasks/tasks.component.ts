@@ -52,11 +52,15 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   onStartClick() {
     this.timerService.startTimer();
-    this.time_start = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   }
 
   onStopClick() {
+    if (!this.timerService.startTime) {
+      return
+    }
+
     this.date = new Date();
+    this.time_start = this.timerService.startTime;
     this.time_end = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     this.time_count = this.timerService.counter?.toLocaleTimeString('it-IT');
     this.timerService.stopTimer();
@@ -89,6 +93,10 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   //onSubmit
   onSubmit() {
+    if (!this.timerService.startTime) {
+      return
+    }
+
     //console.log(this.taskForm);
     this.task = this.taskForm?.value; //shortcut for this.task.name = this.taskForm?.value.name etc. for all properties
     this.task.date = this.date;
@@ -104,6 +112,7 @@ export class TasksComponent implements OnInit, OnDestroy {
       },
     });
     this.taskForm?.reset(); //resets the form and its properties and state (like touched,dirty etc.)
+    this.timerService.resetTimer()
   }
 
   //onUpdate
