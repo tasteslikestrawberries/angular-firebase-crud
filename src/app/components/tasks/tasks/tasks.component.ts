@@ -31,24 +31,19 @@ export class TasksComponent implements OnInit, OnDestroy {
   tasks: ITask[] = [];
   task!: ITask;
 
-  date: any;
+  date?: Date;
 
   /**TIMER**/
-  stop = false;
-  clicked = false;
-  time_start: any;
-  time_end: any;
-  time_count: any;
-  time_total: any;
+  startButtonDisabled = false;
+  time_start?: string;
+  time_end?: string;
+  time_count?: string;
+  time_total?: string;
 
   /*getTotalTime() {
     this.time_total = this.tasks.reduce( (sum, task) => sum + task.time_count, 0);
     console.log(this.time_total)
   }*/
-
-  toggle() {
-    this.stop = !this.stop;
-  }
 
   onStartClick() {
     this.timerService.startTimer();
@@ -64,10 +59,6 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.time_end = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     this.time_count = this.timerService.counter?.toLocaleTimeString('it-IT');
     this.timerService.stopTimer();
-  }
-
-  onResetClick() {
-    this.timerService.resetTimer();
   }
 
   constructor(private taskService: TaskService, public timerService: TimerService) { }
@@ -99,10 +90,12 @@ export class TasksComponent implements OnInit, OnDestroy {
 
     //console.log(this.taskForm);
     this.task = this.taskForm?.value; //shortcut for this.task.name = this.taskForm?.value.name etc. for all properties
+
     this.task.date = this.date;
     this.task.time_start = this.time_start;
     this.task.time_end = this.time_end;
     this.task.time_count = this.time_count;
+
     this.taskService.createTask(this.task).subscribe({
       next: (data) => {
         console.log('Task successfully added.');
@@ -125,13 +118,9 @@ export class TasksComponent implements OnInit, OnDestroy {
         console.warn(error);
       },
     });
-    //task.isEditMode = false;
+
     task.isExpandable = false;
   }
-
-  /*toggleEditMode(task: ITask) {
-    task.isEditMode = !task.isEditMode;
-  }*/
 
   //onDelete
   onDeleteTask(id: string) {

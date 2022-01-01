@@ -7,11 +7,10 @@ export interface ITask {
   id: string;
   name: string;
   description: string;
-  date: Date;
-  time_start: Date;
-  time_end: Date;
-  time_count: any;
-  isEditMode: boolean;
+  date?: Date;
+  time_start?: string;
+  time_end?: string;
+  time_count?: string;
   isExpandable: boolean;
 }
 
@@ -40,22 +39,18 @@ export class TaskService {
       //here subscribe is substitute for then/catch/finally, just to get response
       next: (data) => {
         if (!data) return;
-
-        //pretvaramo objekt objekata u array objekata (ITask) - methods Object.keys/values/entries return an array
-        //Object.entries returns 2-dimensional array in which the inner one is [key,value]
-        //here data is {id: <ITask> without id} --> id is key, <ITask> with omitted id is value
-        //if we have array: skip this step and just write: const tasks=data;
-        const tasks: ITask[] = Object.entries(
-          data as Record<string, Omit<ITask, 'id' | 'editable'>>
-        ).map(([id, task]) => {
+        //console.log(data) // data structure is: {id: {task}}
+        //methods Object.keys/values/entries returns an array from object
+        //see data structure and what needs to be extracted from it
+        //if data already is an array: skip this step and just write: const tasks=data;
+        const tasks: ITask[] = Object.entries(data).map( ([id, task]) => {
           return {
             id: id,
             ...task,
-            isEditMode: false,
-            isExpandable: false,
-          }; //returning new object with properties from ITaskWithOmittedId + id = and we get ITask
+            isExpandable: false
+          }; //returning array of objects with id inside
         });
-
+        //console.log(tasks)
         this.tasks = tasks;
         this.refresh();
       },
@@ -64,30 +59,13 @@ export class TaskService {
 
   getTask(id: string) {
     this.http
-      .get(
-        `https://angular-crud-d10d8-default-rtdb.europe-west1.firebasedatabase.app/tasks/${id}.json`
-      )
-      .subscribe({
-        next: (data) => {
-          const task = data as ITask;
-
-          // we have to update exact task. FindIndex returns the index of the task whose id is equal to the fetched id.
-          const index = this.tasks.findIndex((task) => task.id === id);
-          // If such task doesn't exist, index will be -1 so app will crash
-          this.tasks[index] = {
-            ...task,
-            isEditMode: this.tasks[index].isEditMode,
-          };
-
-          this.refresh();
-        },
-      });
+      .get(this.getUrlTaskId(id))
+      .subscribe();
+    this.refresh();
   }
 
   //POST REQUEST
-  createTask(task: any) {
-    //this.tasks.push(task);
-    //this.refresh();
+  createTask(task: ITask) {
     return this.http.post(this.url, task).pipe(
       tap({
         next: () => {
@@ -112,8 +90,7 @@ export class TaskService {
   deleteTask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
     this.refresh();
-    console.log(id);
-    console.log(this.getUrlTaskId(id));
+    //console.log(id);
     return this.http.delete(this.getUrlTaskId(id));
   }
 

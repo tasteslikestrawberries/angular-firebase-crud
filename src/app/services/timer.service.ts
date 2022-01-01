@@ -12,7 +12,7 @@ export class TimerService {
   constructor() {}
 
   startTimer() {
-    if (this.timer$ && !this.timer$.closed) {
+    if (this.timer$ && !this.timer$.closed) { //ensure there is no memory leak
       this.timer$.unsubscribe()
     }
 

@@ -120,6 +120,11 @@ form {
   background-color: #d45cfc;
 }
 
+.timerButton:disabled {
+  background-color: #e188ff;
+  cursor:default;
+}
+
 /*DESKTOP SCREENS*/
 @media (min-width: 70rem) {
   td {

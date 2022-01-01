@@ -23,8 +23,8 @@
       <button
         type="button"
         class="timerButton"
-        [disabled]="clicked"
-        (click)="onStartClick(); clicked = true"
+        [disabled]="startButtonDisabled"
+        (click)="onStartClick(); startButtonDisabled = true"
       >
         Start
       </button>
@@ -32,9 +32,7 @@
       <button
         type="submit"
         class="timerButton"
-        *ngIf="!stop"
-        (click)="onStopClick(); clicked = false; onSubmit()"
-        (dblclick)="onResetClick()"
+        (click)="onStopClick(); startButtonDisabled = false; onSubmit()"
       >
         Stop
       </button>

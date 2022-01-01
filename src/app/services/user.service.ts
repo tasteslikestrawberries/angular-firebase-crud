@@ -40,16 +40,7 @@ export class UserService {
     this.http.get(this.url).subscribe({
       next: (data: any) => {
         const user = data; // data has a structure,check
-        //console.log(data);
-        this.user = {
-          firstName: user.firstName,
-          lastName: user.lastName,
-          gender: user.gender,
-          email: user.email,
-          phoneNumber: user.phoneNumber,
-          city: user.city,
-          country: user.country,
-        };
+        this.user = user as IUser;
         this.subject.next(this.user); // informs subscribers that new data has arrived and passes it to them
       },
     });
