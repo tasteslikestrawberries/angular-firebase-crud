@@ -39,8 +39,8 @@ export class UserService {
   getUser() {
     this.http.get(this.url).subscribe({
       next: (data: any) => {
-        const user = data; // data has a structure,check
-        this.user = user as IUser;
+        const user: IUser = data; // data has a structure,check
+        this.user = user;
         this.subject.next(this.user); // informs subscribers that new data has arrived and passes it to them
       },
     });
