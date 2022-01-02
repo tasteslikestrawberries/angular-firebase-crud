@@ -18,6 +18,8 @@
     <input type="hidden" name="time_end" ngModel="{{ task?.time_end }}" />
     <input type="hidden" name="time_count" ngModel="{{ task?.time_count }}" />
 
+    <!--TIMER-->
+
     <div>
       <b>{{ timerService.counter | date: "HH:mm:ss" }} </b>
       <button
@@ -39,24 +41,41 @@
     </div>
   </form>
 
+       <!--SEARCH BAR-->
+       <input style="margin:1rem auto; width:60vw; "
+       [value]='query'
+        type="text"
+        class="form-control"
+        (input)="onSearch($event)"
+        placeholder="Search tasks"
+      />
+      <p *ngFor="let result of results">
+        {{result?.name}}
+      </p>
+
   <!-- TABLE -->
   <table class="styled-table">
     <thead>
       <tr>
         <span></span>
-        <th> Total: {{ time_total }}</th>
+        <th>Total: {{ time_total }}</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let task of tasks">
         <td>
           <img src="assets/eve.png" />
-          <span> <input
-            type="text"
-            (keyup.enter)="onUpdateTask(task)"
-            [(ngModel)]="task.name"
-            placeholder="Task Name"
-            style='border:none; background-color: transparent; caret-color: #c947f5;'
+          <span>
+            <input
+              type="text"
+              (keyup.enter)="onUpdateTask(task)"
+              [(ngModel)]="task.name"
+              placeholder="Task Name"
+              style="
+                border: none;
+                background-color: transparent;
+                caret-color: #c947f5;
+              "
           /></span>
           <span
             ><button class="expandButton" (click)="toggleExpandTask(task)">
@@ -89,7 +108,7 @@
             Update
           </button>-->
 
-         <!--<td>
+        <!--<td>
          <button
             type="button"
             (click)="toggleEditMode(task)"

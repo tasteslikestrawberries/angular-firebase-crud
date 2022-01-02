@@ -30,8 +30,24 @@ export class TasksComponent implements OnInit, OnDestroy {
   @ViewChild('taskForm') taskForm?: NgForm;
   tasks: ITask[] = [];
   task!: ITask;
-
   date?: Date;
+
+  query = '';
+  results!: ITask[];
+
+  constructor(private taskService: TaskService, public timerService: TimerService) {}
+
+
+  onSearch(event: Event) {
+    this.query = (<HTMLInputElement>event.target).value;
+
+    this.results = this.tasks.filter(task => {
+      if (task.name.includes(this.query)) return true;
+      if (task.description.includes(this.query)) return true;
+
+      return false
+    })
+  }
 
   /**TIMER**/
   startButtonDisabled = false;
@@ -60,8 +76,6 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.time_count = this.timerService.counter?.toLocaleTimeString('it-IT');
     this.timerService.stopTimer();
   }
-
-  constructor(private taskService: TaskService, public timerService: TimerService) { }
 
   toggleExpandTask(task: ITask) {
     task.isExpandable = !task.isExpandable;
