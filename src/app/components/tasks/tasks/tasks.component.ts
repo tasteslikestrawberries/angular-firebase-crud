@@ -32,18 +32,19 @@ export class TasksComponent implements OnInit, OnDestroy {
   task!: ITask;
   date?: Date;
 
+  /**SEARCH */
   query = '';
-  results!: ITask[];
+  results?: ITask[];
 
-  constructor(private taskService: TaskService, public timerService: TimerService) {}
-
+  constructor(private taskService: TaskService, public timerService: TimerService) { }
 
   onSearch(event: Event) {
     this.query = (<HTMLInputElement>event.target).value;
+    if (!this.tasks) return
 
     this.results = this.tasks.filter(task => {
-      if (task.name.includes(this.query)) return true;
-      if (task.description.includes(this.query)) return true;
+      if (task.name && task.name.toLowerCase().includes(this.query)) return true;
+      if (task.description && task.description.toLowerCase().includes(this.query)) return true;
 
       return false
     })
@@ -86,6 +87,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.subscription = this.taskService.$Tasks().subscribe({
       next: (tasks) => {
         this.tasks = tasks;
+        this.results = tasks;
       },
     });
     this.fetchTasks(); //calling fetchTasks()

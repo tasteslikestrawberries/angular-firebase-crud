@@ -41,17 +41,14 @@
     </div>
   </form>
 
-       <!--SEARCH BAR-->
-       <input style="margin:1rem auto; width:60vw; "
-       [value]='query'
-        type="text"
-        class="form-control"
-        (input)="onSearch($event)"
-        placeholder="Search tasks"
-      />
-      <p *ngFor="let result of results">
-        {{result?.name}}
-      </p>
+  <!--SEARCH BAR-->
+  <input
+    style="margin: 1rem auto; width: 60vw"
+    type="text"
+    class="form-control"
+    (input)="onSearch($event)"
+    placeholder="Search tasks"
+  />
 
   <!-- TABLE -->
   <table class="styled-table">
@@ -62,7 +59,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let task of tasks">
+      <tr *ngFor="let task of results">
         <td>
           <img src="assets/eve.png" />
           <span>
