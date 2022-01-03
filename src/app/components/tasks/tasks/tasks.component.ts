@@ -43,7 +43,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     if (!this.tasks) return
 
     this.results = this.tasks.filter(task => {
-      if (task.name && task.name.toLowerCase().includes(this.query)) return true;
+      if (task.name.toLowerCase().includes(this.query)) return true;
       if (task.description && task.description.toLowerCase().includes(this.query)) return true;
 
       return false
