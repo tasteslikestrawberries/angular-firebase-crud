@@ -32,7 +32,7 @@
       <button
         type="button"
         class="timerButton"
-        [disabled]="startButtonDisabled ||!taskForm.valid"
+        [disabled]="startButtonDisabled || !taskForm.valid"
         (click)="onStartClick(); startButtonDisabled = true"
       >
         Start
