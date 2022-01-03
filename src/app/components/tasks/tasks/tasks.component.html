@@ -6,12 +6,19 @@
   <form class="addBarContainer" #taskForm="ngForm">
     <!--(ngSubmit)="onSubmit()"-->
     <input
-      class="taskInput"
+      class="form-control taskInput"
       type="text"
       ngModel
+      #name='ngModel'
       name="name"
       placeholder="What are you working on?"
+      required
     />
+
+    <span *ngIf="!name.valid && name.touched" class="help-block"
+    >Please enter task name.</span
+  >
+
 
     <input type="hidden" name="date" ngModel="{{ task?.date }}" />
     <input type="hidden" name="time_start" ngModel="{{ task?.time_start }}" />
@@ -25,7 +32,7 @@
       <button
         type="button"
         class="timerButton"
-        [disabled]="startButtonDisabled"
+        [disabled]="startButtonDisabled ||!taskForm.valid"
         (click)="onStartClick(); startButtonDisabled = true"
       >
         Start
@@ -34,7 +41,8 @@
       <button
         type="submit"
         class="timerButton"
-        (click)="onStopClick(); startButtonDisabled = false; onSubmit()"
+        [disabled]="!taskForm.valid"
+        (click)="onStopClick(); startButtonDisabled = false; onSubmit() "
       >
         Stop
       </button>

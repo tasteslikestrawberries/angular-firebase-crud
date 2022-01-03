@@ -28,6 +28,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   @ViewChild('taskForm') taskForm?: NgForm;
+  submitted = false;
   tasks: ITask[] = [];
   task!: ITask;
   date?: Date;
@@ -103,10 +104,10 @@ export class TasksComponent implements OnInit, OnDestroy {
     if (!this.timerService.startTime) {
       return
     }
-
+    this.submitted = true;
     //console.log(this.taskForm);
     this.task = this.taskForm?.value; //shortcut for this.task.name = this.taskForm?.value.name etc. for all properties
-
+    this.task.name = this.taskForm?.value.name
     this.task.date = this.date;
     this.task.time_start = this.time_start;
     this.task.time_end = this.time_end;
