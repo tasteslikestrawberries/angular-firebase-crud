@@ -1,0 +1,169 @@
+.dateForm{
+  margin:0;
+  padding:0;
+}
+
+input[type="date"]{
+  outline:none;
+  background-color: transparent;
+  border:none; 
+  color:#fff; 
+  font-weight:bold;
+}
+
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+tr {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+td {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0 1rem;
+}
+
+td :nth-child(2) {
+  width: 5rem;
+}
+
+td img {
+  width: 30px;
+}
+
+.taskInput {
+  padding: 0.5rem;
+  margin: 0 1rem;
+  width: 50vw;
+  border: none;
+  border: 5px solid #c947f5;
+  border-radius: 15px;
+}
+
+.editInput {
+  border: none;
+  border-bottom: 2px solid #c947f5;
+  background-color: transparent;
+}
+
+ul {
+  display: flex;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+/*BUTTONS*/
+button {
+  border: none;
+  border-radius: 5px;
+  margin: 1rem;
+  background-color: #c947f5;
+  padding: 0.5rem;
+  color: white;
+  font-weight: bold;
+}
+
+.expandButton {
+  background-color: unset;
+  margin: 0rem;
+  padding: 0rem;
+  border-radius: unset;
+}
+
+.taskExpandedDetails {
+  background-color: white !important; /*overriding bootstrap*/
+  height: fit-content;
+  display: block;
+}
+
+.taskExpandedDetails li {
+  list-style-type: none;
+  margin: 1rem;
+  font-size: small;
+}
+
+form {
+  display: flex;
+  margin: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.addBar {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.addButton {
+  color: #c947f5;
+  background-color: unset;
+  font-weight: bold;
+}
+
+.icon {
+  font-size: 20px;
+}
+
+.timer button {
+  margin: 0;
+  margin-left: 1rem;
+}
+
+.timerButton:hover {
+  background-color: #d45cfc;
+}
+
+.timerButton:disabled {
+  background-color: #e188ff;
+  cursor:default;
+}
+
+/*DESKTOP SCREENS*/
+@media (min-width: 70rem) {
+  td {
+    gap: 2rem;
+  }
+
+  td :nth-child(2) {
+    width: 10rem;
+  }
+
+  form {
+    margin: 0 0vw;
+    margin-top: 2rem;
+    flex-wrap: nowrap;
+  }
+
+  .taskInput {
+    width: 25vw;
+    margin: 0.5rem;
+  }
+
+  .timer {
+    margin: unset;
+    font-size: large;
+  }
+
+  .timer button {
+    margin-left: 1rem;
+  }
+}
+
+/*VERY BIG SCREENS*/
+@media (min-width: 80rem) {
+  form {
+    margin: 0 7vw;
+    margin-top: 2rem;
+  }
+
+  .styled-table {
+    min-width: 60vw;
+  }
+}

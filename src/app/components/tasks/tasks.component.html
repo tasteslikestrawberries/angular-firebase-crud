@@ -1,0 +1,172 @@
+<div class="containerPaper">
+  <div class="cardsHeader">
+    <h1>Timesheet</h1>
+  </div>
+
+  <form class="addBarContainer" #taskForm="ngForm">
+    <!--(ngSubmit)="onSubmit()"-->
+    <input
+      class="form-control taskInput"
+      type="text"
+      ngModel
+      #name='ngModel'
+      name="name"
+      placeholder="What are you working on?"
+    />
+
+    <!--<span *ngIf="!name.valid && name.touched" class="help-block"
+    >Please enter task name.</span
+  >-->
+
+
+    <input type="hidden" name="date" ngModel="{{ task?.date }}" />
+    <input type="hidden" name="time_start" ngModel="{{ task?.time_start }}" />
+    <input type="hidden" name="time_end" ngModel="{{ task?.time_end }}" />
+    <input type="hidden" name="time_count" ngModel="{{ task?.time_count }}" />
+
+    <!--TIMER-->
+
+    <div>
+      <b>{{ timerService?.counter | date: "HH:mm:ss" }} </b>
+      <button
+        type="button"
+        class="timerButton"
+        [disabled]="startButtonDisabled || !taskForm.valid"
+        (click)="onStartClick(); startButtonDisabled = true"
+      >
+        Start
+      </button>
+
+      <button
+        type="submit"
+        class="timerButton"
+        [disabled]="!taskForm.valid"
+        (click)="onStopClick(); startButtonDisabled = false; onSubmit() "
+      >
+        Stop
+      </button>
+    </div>
+  </form>
+
+  <!--SEARCH BAR-->
+  <input
+    style="margin: 1rem auto; width: 60vw"
+    type="text"
+    class="form-control"
+    (input)="onSearch($event)"
+    placeholder="Search tasks"
+  />
+
+  <!-- TABLE -->
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <span></span>
+        <th>Total: {{ time_total }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of results">
+        <td>
+          <img src="assets/eve.png" />
+          <span>
+            <input
+              type="text"
+              (keyup.enter)="onUpdateTask(task)"
+              [(ngModel)]="task.name"
+              placeholder="Task Name"
+              style="
+                border: none;
+                background-color: transparent;
+                caret-color: #c947f5;
+              "
+          /></span>
+          <span
+            ><button class="expandButton" (click)="toggleExpandTask(task)">
+              <fa-icon
+                class="icon"
+                [icon]="faCaretDown"
+                style="color: #c947f5"
+              ></fa-icon></button
+          ></span>
+        </td>
+        <td>{{ task?.date | customDate }}</td>
+        <td>{{ task?.time_start }} - {{ task?.time_end }}</td>
+        <td>{{ task?.time_count }}</td>
+        <!--<td>
+          <input
+            class="editInput"
+            *ngIf="task.isEditMode"
+            type="text"
+            (keyup.enter)="onUpdateTask(task)"
+            [(ngModel)]="task.name"
+            placeholder="Task Name"
+          />
+        </td>
+
+        <button
+            *ngIf="task.isEditMode"
+            (click)="onUpdateTask(task)"
+            type="button"
+          >
+            Update
+          </button>-->
+
+        <!--<td>
+         <button
+            type="button"
+            (click)="toggleEditMode(task)"
+            style="background-color: unset"
+          >
+            <fa-icon
+              class="icon"
+              [icon]="faPen"
+              style="color: #c947f5"
+            ></fa-icon>
+          </button>
+        </td> -->
+        <td>
+          <button
+            type="button"
+            (click)="onDeleteTask(task.id)"
+            style="background-color: unset"
+          >
+            <fa-icon
+              class="icon"
+              [icon]="faTrashAlt"
+              style="color: #dc3545"
+            ></fa-icon>
+          </button>
+        </td>
+        <div
+          class="taskExpandedDetails"
+          *ngIf="task.isExpandable"
+          style="width: 100%"
+        >
+          <hr
+            style="
+              width: 100%;
+              height: 1px;
+              border: none;
+              padding: 0;
+              margin: 0;
+              background-color: #d8d8d8;
+            "
+          />
+          <ul>
+            <li>
+              <input
+                type="text"
+                [(ngModel)]="task.description"
+                name="description"
+                style="border: none"
+                placeholder="Add description"
+                (keyup.enter)="onUpdateTask(task)"
+              />
+            </li>
+          </ul>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
