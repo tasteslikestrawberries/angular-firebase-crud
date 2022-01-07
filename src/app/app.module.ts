@@ -8,7 +8,7 @@ import { NavbarComponent } from './components/navigation/navbar/navbar.component
 import { SidebarComponent } from './components/navigation/sidebar/sidebar.component';
 import { AddUserComponent } from './components/user/add-user/add-user.component';
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
-import { TasksComponent } from './components/tasks/tasks/tasks.component';
+import { TasksComponent } from './components/tasks/tasks.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';

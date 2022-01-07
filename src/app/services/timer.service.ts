@@ -5,7 +5,7 @@ import { Subscription, timer } from 'rxjs';
   providedIn: 'root',
 })
 export class TimerService {
-  timer$?: Subscription;
+  private timer$?: Subscription;
   counter?: Date;
   startTime: any;
 

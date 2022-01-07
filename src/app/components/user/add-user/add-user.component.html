@@ -84,6 +84,7 @@
           </div>
         </form>
 
+        <p class='formStatus' *ngIf='errorMsg' style='color:red'>An error occured. User not added.</p>
         <p class="formStatus" *ngIf="submitted">{{ formStatus }}</p>
       </div>
     </div>

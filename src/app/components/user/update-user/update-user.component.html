@@ -100,11 +100,12 @@
           background-color: #d8d8d8;
         "
       />
-      <button class="btn btn-danger" type="button" (click)="deleteuser()">
+      <button class="btn btn-danger" type="button" (click)="deleteUser()">
         Delete Profile
       </button>
     </div>
   </form>
+  <p class='formStatus' *ngIf='errorMsg' style='color:red'>An error occured. Profile not updated.</p>
 
   <p class="formStatus" *ngIf="deleted">{{ deleteMessage }}</p>
 

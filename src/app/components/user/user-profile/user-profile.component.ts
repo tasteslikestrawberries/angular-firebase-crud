@@ -13,7 +13,7 @@ import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
   active = 1;
-  
+
   /*
   ngbNav = NgbNav;
   ngbNavItem = NgbNavItem;
@@ -23,16 +23,16 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   myprofileIcon = faUser;
   faUserEdit = faUserEdit;
 
-  user!: IUser ;
+  user!: IUser;
   private subscription?: Subscription;
 
 
-  constructor(private userService:UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.subscription = this.userService.$User().subscribe({
-      next: (user) => {
-        this.user = user
+      next: (data) => {
+        this.user = data;
       }
     });
 

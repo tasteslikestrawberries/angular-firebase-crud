@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { delay } from 'rxjs/operators';
 
@@ -24,6 +24,7 @@ export class UpdateUserComponent implements OnInit {
   formStatus = 'Profile successfully updated.';
   deleted = false;
   deleteMessage = 'User successfully deleted.';
+  errorMsg = false;
 
   constructor(private userService: UserService) {}
 
@@ -31,16 +32,18 @@ export class UpdateUserComponent implements OnInit {
     this.isLoading = true;
     //console.log(this.userForm);
     this.user = this.userForm?.value; //shortcut for this.user.firstName = this.userForm?.value.firstName etc. for all properties
-    // TODO handle response (A)
+   
     this.userService
       .updateUser(this.user)
       .pipe(delay(200))
       .subscribe({
-        next: (responseData) => {
+        next: (data) => {
           this.submitted = true;
         },
         error: (error) => {
           console.warn(error);
+          this.errorMsg = true;
+          this.isLoading = false;
         },
         complete: () => {
           this.isLoading = false;
@@ -50,8 +53,8 @@ export class UpdateUserComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.userService.$User().subscribe({
-      next: (user) => {
-        this.user = user;
+      next: (data) => {
+        this.user = data;
       },
     });
 
@@ -62,7 +65,7 @@ export class UpdateUserComponent implements OnInit {
     this.userService.getUser();
   }
 
-  deleteuser() {
+  deleteUser() {
     this.isLoading = true;
     this.userService
       .deleteUser()

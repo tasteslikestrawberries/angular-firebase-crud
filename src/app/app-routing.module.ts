@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TasksComponent } from './components/tasks/tasks/tasks.component';
+import { TasksComponent } from './components/tasks/tasks.component';
 import { AddUserComponent } from './components/user/add-user/add-user.component';
 import { UpdateUserComponent } from './components/user/update-user/update-user.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';

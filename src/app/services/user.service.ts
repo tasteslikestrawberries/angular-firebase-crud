@@ -47,16 +47,16 @@ export class UserService {
   }
 
   //POST REQUEST
-  createUser(User: any) {
+  createUser(user: IUser) {
     return this.http.post(
       'https://angular-crud-d10d8-default-rtdb.europe-west1.firebasedatabase.app/users.json',
-      User
+      user
     );
   }
 
   //PUT REQUEST
-  updateUser(User: any) {
-    return this.http.put(this.url, User);
+  updateUser(user: IUser) {
+    return this.http.put(this.url, user);
   }
 
   //DELETE REQUEST

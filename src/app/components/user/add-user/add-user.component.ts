@@ -23,6 +23,7 @@ export class AddUserComponent implements OnInit {
   submitted = false;
   isLoading = false;
   formStatus = 'New user successfully added.';
+  errorMsg = false;
 
   constructor(private userService: UserService) {}
 
@@ -36,11 +37,13 @@ export class AddUserComponent implements OnInit {
       .createUser(this.user)
       .pipe(delay(200))
       .subscribe({
-        next: (responseData) => {
+        next: (data) => {
           this.submitted = true;
         },
         error: (error) => {
           console.warn(error);
+          this.isLoading = false;
+          this.errorMsg = true;
         },
         complete: () => {
           this.isLoading = false;
