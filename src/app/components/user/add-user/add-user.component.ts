@@ -5,6 +5,20 @@ import { delay } from 'rxjs/operators';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { UserService } from 'src/app/services/user.service';
 
+export const formStatus = {
+  isLoading: false,
+  isAdded: false,
+  isUpdated: false,
+  isDeleted: false,
+  isError: false
+}
+
+export const formMessage = {
+  addedMsg: 'User successfully added.',
+  updatedMsg: 'Profile successfully updated.',
+  deletedMsg: 'Profile successfully deleted.',
+  errorMsg: 'Sorry, an error occured.'
+}
 
 @Component({
   selector: 'app-add-user',
@@ -19,16 +33,14 @@ export class AddUserComponent implements OnInit {
 
   genders = ['Female', 'Male', 'Other'];
   user = this.userService.setInitialUser();
+  formStatus = formStatus;
+  formMessage = formMessage;
 
-  submitted = false;
-  isLoading = false;
-  formStatus = 'New user successfully added.';
-  errorMsg = false;
 
   constructor(private userService: UserService) {}
 
   onSubmit() {
-    this.isLoading = true;
+    this.formStatus.isLoading = true;
     //console.log(this.userForm);
     this.user = this.userForm?.value; //shortcut for this.user.firstName = this.userForm?.value.firstName etc. for all properties
 
@@ -38,15 +50,15 @@ export class AddUserComponent implements OnInit {
       .pipe(delay(200))
       .subscribe({
         next: (data) => {
-          this.submitted = true;
+          this.formStatus.isAdded = true;
         },
         error: (error) => {
           console.warn(error);
-          this.isLoading = false;
-          this.errorMsg = true;
+          this.formStatus.isLoading = false;
+          this.formStatus.isError = true;
         },
         complete: () => {
-          this.isLoading = false;
+          this.formStatus.isLoading = false;
         },
       });
 

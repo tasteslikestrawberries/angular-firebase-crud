@@ -3,13 +3,13 @@
     <fa-icon class="icon" [icon]="faUserPlus" style="color: #c947f5"></fa-icon>
     <h1>Add User</h1>
   </div>
-  <div class="spinnerWrapper" *ngIf="isLoading">
+  <div class="spinnerWrapper" *ngIf="formStatus.isLoading">
     <app-loading-spinner></app-loading-spinner>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-        <form (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="!isLoading">
+        <form (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="!formStatus.isLoading">
           <div class="form-group">
             <span style="color: #c947f5">*{{ " " }}</span
             ><label>First Name:</label>
@@ -84,8 +84,9 @@
           </div>
         </form>
 
-        <p class='formStatus' *ngIf='errorMsg' style='color:red'>An error occured. User not added.</p>
-        <p class="formStatus" *ngIf="submitted">{{ formStatus }}</p>
+        <p class="formStatus" *ngIf="formStatus.isError" style='color:red'>{{ formMessage.errorMsg}}</p>
+        <p class="formStatus" *ngIf="formStatus.isAdded">{{ formMessage.addedMsg }}</p>
+
       </div>
     </div>
   </div>

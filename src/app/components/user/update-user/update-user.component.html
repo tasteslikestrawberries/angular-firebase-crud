@@ -4,11 +4,11 @@
     <h1>Edit Profile</h1>
   </div>
 
-  <div class="spinnerWrapper" *ngIf="isLoading">
+  <div class="spinnerWrapper" *ngIf="formStatus.isLoading">
     <app-loading-spinner></app-loading-spinner>
   </div>
 
-  <form (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="!isLoading">
+  <form (ngSubmit)="onSubmit()" #f="ngForm" *ngIf="!formStatus.isLoading">
     <div class="form-group">
       <label>First Name:</label>
       <input
@@ -105,9 +105,14 @@
       </button>
     </div>
   </form>
-  <p class='formStatus' *ngIf='errorMsg' style='color:red'>An error occured. Profile not updated.</p>
-
-  <p class="formStatus" *ngIf="deleted">{{ deleteMessage }}</p>
-
-  <p class="formStatus" *ngIf="submitted">{{ formStatus }}</p>
+  
+  <p class="formStatus" *ngIf="formStatus.isError" style="color: red">
+    {{ formMessage.errorMsg }}
+  </p>
+  <p class="formStatus" *ngIf="formStatus.isDeleted">
+    {{ formMessage.deletedMsg }}
+  </p>
+  <p class="formStatus" *ngIf="formStatus.isUpdated">
+    {{ formMessage.updatedMsg }}
+  </p>
 </div>
