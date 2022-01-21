@@ -27,7 +27,7 @@
     <!--TIMER-->
 
     <div>
-      <b>{{ timerService?.counter | date: "HH:mm:ss" }} </b>
+      <b>{{ timerService?.date| date: "HH:mm:ss" }} </b>
       <button
         type="button"
         class="timerButton"
@@ -140,7 +140,7 @@
         </td>
         <div
           class="taskExpandedDetails"
-          *ngIf="task.isExpandable"
+          *ngIf="task.isExpanded"
           style="width: 100%"
         >
           <hr

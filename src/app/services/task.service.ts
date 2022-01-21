@@ -11,7 +11,7 @@ export interface ITask {
   time_start?: string;
   time_end?: string;
   time_count?: string;
-  isExpandable: boolean;
+  isExpanded: boolean;
 }
 
 @Injectable({
@@ -47,7 +47,7 @@ export class TaskService {
           return {
             id: id,
             ...task,
-            isExpandable: false
+            isExpanded: false
           }; //returning array of objects with id inside
         });
         //console.log(tasks)

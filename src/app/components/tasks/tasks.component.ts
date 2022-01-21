@@ -25,27 +25,27 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   collapsed?: boolean;
 
-  private subscription?: Subscription;
+  private subscription$?: Subscription;
 
   @ViewChild('taskForm') taskForm?: NgForm;
-  submitted = false;
+
   tasks: ITask[] = [];
   task!: ITask;
   date?: Date;
 
   /**SEARCH */
-  query = '';
+  userInput = '';
   results?: ITask[];
 
   constructor(private taskService: TaskService, public timerService: TimerService) { }
 
   onSearch(event: Event) {
-    this.query = (<HTMLInputElement>event.target).value;
+    this.userInput = (<HTMLInputElement>event.target).value;
     if (!this.tasks) return
 
     this.results = this.tasks.filter(task => {
-      if (task.name.toLowerCase().includes(this.query)) return true;
-      if (task.description && task.description.toLowerCase().includes(this.query)) return true;
+      if (task.name.toLowerCase().includes(this.userInput)) return true;
+      if (task.description && task.description.toLowerCase().includes(this.userInput)) return true;
 
       return false
     })
@@ -57,11 +57,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   time_end?: string;
   time_count?: string;
   time_total?: string;
-
-  /*getTotalTime() {
-    this.time_total = this.tasks.reduce( (sum, task) => sum + task.time_count, 0);
-    console.log(this.time_total)
-  }*/
 
   onStartClick() {
     this.timerService.startTimer();
@@ -75,24 +70,23 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.date = new Date();
     this.time_start = this.timerService.startTime;
     this.time_end = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
-    this.time_count = this.timerService.counter?.toLocaleTimeString('it-IT');
+    this.time_count = this.timerService.date?.toLocaleTimeString('it-IT');
     this.timerService.stopTimer();
   }
 
   toggleExpandTask(task: ITask) {
-    task.isExpandable = !task.isExpandable;
+    task.isExpanded = !task.isExpanded;
   }
 
   //get
   ngOnInit() {
-    this.subscription = this.taskService.$Tasks().subscribe({
+    this.subscription$ = this.taskService.$Tasks().subscribe({
       next: (data) => {
         this.tasks = data;
         this.results = data;
       },
     });
-    this.fetchTasks(); //calling fetchTasks()
-    //this.getTotalTime()
+    this.fetchTasks();
   }
 
   fetchTasks() {
@@ -104,9 +98,8 @@ export class TasksComponent implements OnInit, OnDestroy {
     if (!this.timerService.startTime) {
       return
     }
-    this.submitted = true;
     //console.log(this.taskForm);
-    this.task = this.taskForm?.value; //shortcut for this.task.name = this.taskForm?.value.name etc. for all properties
+    this.task = this.taskForm?.value;
     this.task.name = this.taskForm?.value.name
     this.task.date = this.date;
     this.task.time_start = this.time_start;
@@ -136,7 +129,7 @@ export class TasksComponent implements OnInit, OnDestroy {
       },
     });
 
-    task.isExpandable = false;
+    task.isExpanded = false;
   }
 
   //onDelete
@@ -152,6 +145,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription?.unsubscribe();
+    this.subscription$?.unsubscribe();
   }
 }

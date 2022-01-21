@@ -5,32 +5,33 @@ import { Subscription, timer } from 'rxjs';
   providedIn: 'root',
 })
 export class TimerService {
-  private timer$?: Subscription;
-  counter?: Date;
-  startTime: any;
+  private timerSub$?: Subscription;
+  date?: Date;
+  startTime?: string | null;
 
-  constructor() {}
+  constructor() { }
 
   startTimer() {
-    if (this.timer$ && !this.timer$.closed) { //ensure there is no memory leak
-      this.timer$.unsubscribe()
+    if (this.timerSub$ && !this.timerSub$.closed) { //ensure there is no memory leak
+      this.stopTimer();
     }
 
-    this.timer$ = timer(0, 1000).subscribe({ 
+    this.timerSub$ = timer(0, 1000).subscribe({
       next: (timer: any) => {
-      this.counter = new Date(0, 0, 0, 0, 0, 0);
-      this.counter.setSeconds(timer);
-    }});
+        this.date = new Date(0, 0, 0, 0, 0, 0);
+        this.date.setSeconds(timer);
+      }
+    });
     this.startTime = new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   }
 
   stopTimer() {
-    this.timer$?.unsubscribe();
+    this.timerSub$?.unsubscribe();
   }
 
   resetTimer() {
-    this.counter = new Date(0, 0, 0, 0, 0, 0);
+    this.stopTimer();
+    this.date = new Date(0, 0, 0, 0, 0, 0);
     this.startTime = null;
-    this.timer$ = undefined;
   }
 }
