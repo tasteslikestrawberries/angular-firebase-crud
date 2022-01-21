@@ -17,6 +17,7 @@ import { FilesComponent } from './components/files/files.component';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     FontAwesomeModule,
     FormsModule,
     HttpClientModule,
-    ChartsModule
+    ChartsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
