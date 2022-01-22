@@ -34,7 +34,7 @@ export class AddUserComponent implements OnInit {
         next: (data) => {
           this.formStatus.isAdded = true;
         },
-        error: (error) => {
+        error: (err) => {
           this.formStatus.isLoading = false;
           this.formStatus.isError = true;
         },

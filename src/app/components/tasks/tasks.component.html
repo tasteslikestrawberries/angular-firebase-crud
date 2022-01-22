@@ -9,15 +9,14 @@
       class="form-control taskInput"
       type="text"
       ngModel
-      #name='ngModel'
       name="name"
       placeholder="What are you working on?"
     />
 
-    <input type="hidden" name="date" ngModel="{{ task?.date }}" />
-    <input type="hidden" name="time_start" ngModel="{{ task?.time_start }}" />
-    <input type="hidden" name="time_end" ngModel="{{ task?.time_end }}" />
-    <input type="hidden" name="time_count" ngModel="{{ task?.time_count }}" />
+    <input type="hidden" name="date" [ngModel]="task?.date" />
+    <input type="hidden" name="time_start" [ngModel]="task?.time_start" />
+    <input type="hidden" name="time_end" [ngModel]="task?.time_end" />
+    <input type="hidden" name="time_count" [ngModel]="task?.time_count" />
 
     <!--TIMER-->
 
@@ -67,7 +66,8 @@
           <span>
             <input
               type="text"
-              (keyup.enter)="onUpdateTask(task)"
+              (blur)="onUpdateTask(task)"
+              (keyup.enter)="onUpdateTask(task);"
               [(ngModel)]="task.name"
               placeholder="Task Name"
               style="
@@ -125,6 +125,7 @@
                 name="description"
                 style="border: none"
                 placeholder="Add description"
+                (blur)="onUpdateTask(task)"
                 (keyup.enter)="onUpdateTask(task)"
               />
             </li>

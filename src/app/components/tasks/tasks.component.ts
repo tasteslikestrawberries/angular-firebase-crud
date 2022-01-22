@@ -98,9 +98,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     if (!this.timerService.startTime) {
       return
     }
-    //console.log(this.taskForm);
     this.task = this.taskForm?.value;
-    this.task.name = this.taskForm?.value.name
     this.task.date = this.date;
     this.task.time_start = this.time_start;
     this.task.time_end = this.time_end;
