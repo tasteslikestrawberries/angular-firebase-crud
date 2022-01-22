@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { FileService } from 'src/app/services/file.service';
+import { FileService } from 'src/app/shared/services/file.service';
 
 //icons
 import { faFile } from '@fortawesome/free-solid-svg-icons';

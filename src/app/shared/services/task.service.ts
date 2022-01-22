@@ -2,17 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 import { tap } from 'rxjs/operators';
-
-export interface ITask {
-  id: string;
-  name: string;
-  description: string;
-  date?: Date;
-  time_start?: string;
-  time_end?: string;
-  time_count?: string;
-  isExpanded: boolean;
-}
+import { ITask } from '../models/ITask';
 
 @Injectable({
   providedIn: 'root',
@@ -36,21 +26,21 @@ export class TaskService {
   //GET REQUEST
   getTasks() {
     this.http.get(this.url).subscribe({
-      //here subscribe is substitute for then/catch/finally, just to get response
       next: (data) => {
         if (!data) return;
-        //console.log(data) // data structure is: {id: {task}}
-        //methods Object.keys/values/entries returns an array from object
-        //see data structure and what needs to be extracted from it
-        //if data already is an array: skip this step and just write: const tasks=data;
-        const tasks: ITask[] = Object.entries(data).map( ([id, task]) => {
+        //data structure is {id: {task}, {task}}
+
+        const tasks: ITask[] = Object.entries(data).map(([id, task]) => {
+          //after obj.entr data structure is [id, {task}]
+          //after mapping tasks are [{id, ...task},{id,...task}]
+          //returning array of objects with id inside
           return {
             id: id,
             ...task,
             isExpanded: false
-          }; //returning array of objects with id inside
+          };
         });
-        //console.log(tasks)
+
         this.tasks = tasks;
         this.refresh();
       },
@@ -58,9 +48,7 @@ export class TaskService {
   }
 
   getTask(id: string) {
-    this.http
-      .get(this.getUrlTaskId(id))
-      .subscribe();
+    this.http.get(this.getUrlTaskId(id)).subscribe();
     this.refresh();
   }
 

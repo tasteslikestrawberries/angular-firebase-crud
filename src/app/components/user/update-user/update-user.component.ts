@@ -3,8 +3,9 @@ import { NgForm } from '@angular/forms';
 import { delay } from 'rxjs/operators';
 
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
-import { UserService, IUser } from 'src/app/services/user.service';
-import { formStatus, formMessage } from '../add-user/add-user.component';
+import { UserService } from 'src/app/shared/services/user.service';
+import { IUser } from 'src/app/shared/models/IUser';
+import { formStatus, formMessage } from 'src/app/shared/models/FormStatusMsg';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -24,13 +25,13 @@ export class UpdateUserComponent implements OnInit {
   formMessage = formMessage;
 
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   onSubmit() {
     this.formStatus.isLoading = true;
     //console.log(this.userForm);
     this.user = this.userForm?.value; //shortcut for this.user.firstName = this.userForm?.value.firstName etc. for all properties
-   
+
     this.userService
       .updateUser(this.user)
       .pipe(delay(200))
@@ -70,12 +71,10 @@ export class UpdateUserComponent implements OnInit {
       .pipe(delay(200))
       .subscribe({
         next: (data) => {
-          console.log('Delete successful');
           this.formStatus.isDeleted = true;
           this.userService.resetUser();
         },
-        error: (error) => {
-          console.error('There was an error!', error);
+        error: (err) => {
           this.formStatus.isLoading = false;
           this.formStatus.isError = true;
         },

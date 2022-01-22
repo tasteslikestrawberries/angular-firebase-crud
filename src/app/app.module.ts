@@ -14,10 +14,11 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { PerformanceComponent } from './components/performance/performance.component';
 import { FilesComponent } from './components/files/files.component';
-import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { CustomDatePipe } from './shared/pipes/custom-date.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     HttpClientModule,
     ChartsModule,
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

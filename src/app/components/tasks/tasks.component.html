@@ -4,7 +4,7 @@
   </div>
 
   <form class="addBarContainer" #taskForm="ngForm">
-    <!--(ngSubmit)="onSubmit()"-->
+
     <input
       class="form-control taskInput"
       type="text"
@@ -13,10 +13,6 @@
       name="name"
       placeholder="What are you working on?"
     />
-
-    <!--<span *ngIf="!name.valid && name.touched" class="help-block"
-    >Please enter task name.</span
-  >-->
 
 
     <input type="hidden" name="date" ngModel="{{ task?.date }}" />
@@ -93,38 +89,7 @@
         <td>{{ task?.date | customDate }}</td>
         <td>{{ task?.time_start }} - {{ task?.time_end }}</td>
         <td>{{ task?.time_count }}</td>
-        <!--<td>
-          <input
-            class="editInput"
-            *ngIf="task.isEditMode"
-            type="text"
-            (keyup.enter)="onUpdateTask(task)"
-            [(ngModel)]="task.name"
-            placeholder="Task Name"
-          />
-        </td>
-
-        <button
-            *ngIf="task.isEditMode"
-            (click)="onUpdateTask(task)"
-            type="button"
-          >
-            Update
-          </button>-->
-
-        <!--<td>
-         <button
-            type="button"
-            (click)="toggleEditMode(task)"
-            style="background-color: unset"
-          >
-            <fa-icon
-              class="icon"
-              [icon]="faPen"
-              style="color: #c947f5"
-            ></fa-icon>
-          </button>
-        </td> -->
+        
         <td>
           <button
             type="button"

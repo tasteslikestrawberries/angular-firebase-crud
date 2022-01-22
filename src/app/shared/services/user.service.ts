@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-
-export interface IUser {
-  firstName: string;
-  lastName: string;
-  gender: string;
-  email: string;
-  phoneNumber: string;
-  city: string;
-  country: string;
-}
+import { IUser } from '../models/IUser';
 
 @Injectable({
   providedIn: 'root',
@@ -47,7 +38,7 @@ export class UserService {
   }
 
   //POST REQUEST
-  createUser(user: IUser) {
+  addUser(user: IUser) {
     return this.http.post(
       'https://angular-crud-d10d8-default-rtdb.europe-west1.firebasedatabase.app/users.json',
       user

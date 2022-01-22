@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { TaskService, ITask } from 'src/app/services/task.service';
-import { TimerService } from 'src/app/services/timer.service';
+import { ITask } from 'src/app/shared/models/ITask';
+import { TaskService } from 'src/app/shared/services/task.service';
+import { TimerService } from 'src/app/shared/services/timer.service';
 import { Subscription } from 'rxjs';
+
 
 import {
   faTable,
@@ -25,7 +27,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   collapsed?: boolean;
 
-  private subscription$?: Subscription;
+  private taskSub$?: Subscription;
 
   @ViewChild('taskForm') taskForm?: NgForm;
 
@@ -33,12 +35,20 @@ export class TasksComponent implements OnInit, OnDestroy {
   task!: ITask;
   date?: Date;
 
-  /**SEARCH */
+  //SEARCH
   userInput = '';
   results?: ITask[];
 
+  //TIMER
+  startButtonDisabled = false;
+  time_start?: string;
+  time_end?: string;
+  time_count?: string;
+  time_total?: string;
+
   constructor(private taskService: TaskService, public timerService: TimerService) { }
 
+  //SEARCH
   onSearch(event: Event) {
     this.userInput = (<HTMLInputElement>event.target).value;
     if (!this.tasks) return
@@ -50,13 +60,6 @@ export class TasksComponent implements OnInit, OnDestroy {
       return false
     })
   }
-
-  /**TIMER**/
-  startButtonDisabled = false;
-  time_start?: string;
-  time_end?: string;
-  time_count?: string;
-  time_total?: string;
 
   onStartClick() {
     this.timerService.startTimer();
@@ -80,7 +83,7 @@ export class TasksComponent implements OnInit, OnDestroy {
 
   //get
   ngOnInit() {
-    this.subscription$ = this.taskService.$Tasks().subscribe({
+    this.taskSub$ = this.taskService.$Tasks().subscribe({
       next: (data) => {
         this.tasks = data;
         this.results = data;
@@ -107,12 +110,7 @@ export class TasksComponent implements OnInit, OnDestroy {
     this.task.time_count = this.time_count;
 
     this.taskService.createTask(this.task).subscribe({
-      next: (data) => {
-        console.log('Task successfully added.');
-      },
-      error: (error) => {
-        console.warn(error);
-      },
+      error: err => console.error(err)
     });
     this.taskForm?.reset(); //resets the form and its properties and state (like touched,dirty etc.)
     this.timerService.resetTimer();
@@ -121,12 +119,7 @@ export class TasksComponent implements OnInit, OnDestroy {
   //onUpdate
   onUpdateTask(task: ITask) {
     this.taskService.updateTask(task).subscribe({
-      next: () => {
-        console.log('Task successfully updated.');
-      },
-      error: (error) => {
-        console.warn(error);
-      },
+      error: err => console.error(err)
     });
 
     task.isExpanded = false;
@@ -135,16 +128,11 @@ export class TasksComponent implements OnInit, OnDestroy {
   //onDelete
   onDeleteTask(id: string) {
     this.taskService.deleteTask(id).subscribe({
-      next: (data) => {
-        console.log('Task successfuly deleted');
-      },
-      error: (error) => {
-        console.error('Error deleting task!', error);
-      },
+      error: err => console.error('Error deleting task!', err)
     });
   }
 
   ngOnDestroy() {
-    this.subscription$?.unsubscribe();
+    this.taskSub$?.unsubscribe();
   }
 }

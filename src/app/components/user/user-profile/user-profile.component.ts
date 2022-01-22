@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { UserService, IUser } from 'src/app/services/user.service';
+import { UserService } from 'src/app/shared/services/user.service';
+import { IUser } from 'src/app/shared/models/IUser';
 
 //import {NgbNav, NgbNavItem, NgbNavLink, NgbNavContent} from '@ng-bootstrap/ng-bootstrap'
 import { faUser } from '@fortawesome/free-solid-svg-icons';
@@ -12,20 +13,12 @@ import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  active = 1;
 
-  /*
-  ngbNav = NgbNav;
-  ngbNavItem = NgbNavItem;
-  ngbNavLink = NgbNavLink;
-  ngbNavContent = NgbNavContent;
-  */
   myprofileIcon = faUser;
   faUserEdit = faUserEdit;
 
   user!: IUser;
   private subscription?: Subscription;
-
 
   constructor(private userService: UserService) { }
 
