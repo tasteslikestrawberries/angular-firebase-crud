@@ -24,7 +24,6 @@ export class UpdateUserComponent implements OnInit {
   formStatus = formStatus;
   formMessage = formMessage;
 
-
   constructor(private userService: UserService) { }
 
   onSubmit() {

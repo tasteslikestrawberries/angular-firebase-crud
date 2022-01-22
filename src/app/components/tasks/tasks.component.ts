@@ -5,7 +5,6 @@ import { TaskService } from 'src/app/shared/services/task.service';
 import { TimerService } from 'src/app/shared/services/timer.service';
 import { Subscription } from 'rxjs';
 
-
 import {
   faTable,
   faCaretDown,
@@ -24,8 +23,6 @@ export class TasksComponent implements OnInit, OnDestroy {
   faCaretDown = faCaretDown;
   faTrashAlt = faTrashAlt;
   faPen = faPen;
-
-  collapsed?: boolean;
 
   private taskSub$?: Subscription;
 

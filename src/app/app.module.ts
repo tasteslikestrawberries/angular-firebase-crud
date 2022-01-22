@@ -18,7 +18,6 @@ import { CustomDatePipe } from './shared/pipes/custom-date.pipe';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ChartsModule,
     NgbModule,
-    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
