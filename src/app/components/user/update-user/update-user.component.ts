@@ -38,8 +38,8 @@ export class UpdateUserComponent implements OnInit {
         next: (data) => {
           this.formStatus.isUpdated = true;
         },
-        error: (error) => {
-          console.warn(error);
+        error: (err) => {
+          console.error(err);
           this.formStatus.isError = true;
           this.formStatus.isLoading = false;
         },
