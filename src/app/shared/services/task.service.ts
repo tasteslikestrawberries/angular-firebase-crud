@@ -28,19 +28,19 @@ export class TaskService {
     this.http.get(this.url).subscribe({
       next: (data) => {
         if (!data) return;
-        //data structure is {id: {task}, {task}}
+        //data structure is {id: {task}, id: {task}}
 
         const tasks: ITask[] = Object.entries(data).map(([id, task]) => {
-          //after obj.entr data structure is [id, {task}]
+          //after obj.entr data structure is [ [id, task}] ]
           //after mapping tasks are [{id, ...task},{id,...task}]
-          //returning array of objects with id inside
+          //returning array of objects with id inside:
           return {
             id: id,
             ...task,
             isExpanded: false
           };
         });
-
+        console.log(tasks)
         this.tasks = tasks;
         this.refresh();
       },
