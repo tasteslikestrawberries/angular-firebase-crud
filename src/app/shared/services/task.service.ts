@@ -40,7 +40,7 @@ export class TaskService {
             isExpanded: false
           };
         });
-        console.log(tasks)
+        //console.log(tasks)
         this.tasks = tasks;
         this.refresh();
       },
