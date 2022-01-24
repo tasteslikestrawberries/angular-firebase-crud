@@ -54,6 +54,7 @@ h3 {
 li {
   list-style-type: none;
 }
+
 /*DESKTOP SCREENS*/
 @media (min-width: 70rem) {
   .myProfileHeadlineWrapper {

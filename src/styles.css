@@ -59,7 +59,6 @@ h1 {
 }
 
 /* Tables */
-
 .styled-table {
   border-collapse: collapse;
   margin: 1rem 0;
@@ -88,14 +87,14 @@ h1 {
   background-color: #f3f3f3;
 }
 
-/*.styled-table tbody tr:last-of-type {
-  border-bottom: 2px solid #C947F5;
-}*/
-
 /* TABS */
-
 .nav-link a.active {
   color: #c947f5;
+}
+
+/* overriding bootstrap */
+ul {
+  margin-bottom: 0 !important;
 }
 
 /*DESKTOP SCREENS*/
@@ -130,27 +129,4 @@ h1 {
   }
 }
 
-/* overriding bootstrap */
 
-ul {
-  margin-bottom: 0 !important;
-}
-.nav-tabs .nav-link {
-  color: #222222;
-}
-
-.nav-tabs .nav-link.active {
-  color: #c947f5;
-}
-
-#dropdownBasic1 {
-  color: #c947f5;
-  border: none;
-  background-color: unset;
-  outline: none;
-}
-
-.dropdown-item.active,
-.dropdown-item:active {
-  background-color: #c947f5;
-}
